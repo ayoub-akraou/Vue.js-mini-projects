@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>first project</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        font-size: 18px;
+        min-height: 100vh;
+        display: flex;
+      }
+      #app {
+        width: 300px;
+        background-color: #eee;
+        padding: 20px;
+        margin: auto;
+      }
+      h3 {
+        margin: 0 0 10px;
+        font-weight: bold;
+      }
+      p {
+        font-size: 16px;
+        color: #777;
+      }
+      .price {
+        display: block;
+        font-size: 14px;
+        margin: 0 0 20px;
+      }
+      .amount-title {
+        font-size: 14px;
+        text-align: center;
+        display: block;
+        margin-bottom: 20px;
+      }
+      input[type="range"] {
+        width: 100%;
+      }
+      .total-price {
+        overflow: hidden;
+        padding-top: 20px;
+      }
+      .total-price .amount,
+      .total-price .total {
+        background-color: #fff;
+        padding: 2px 10px;
+        border-radius: 4px;
+      }
+      .total-price .amount {
+        float: left;
+      }
+      .total-price .total {
+        float: right;
+      }
+
+      .links-urls {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 10px;
+      }
+      .link {
+        padding: 10px 20px;
+        display: block;
+        background-color: #eee;
+        margin-bottom: 10px;
+        text-decoration: none;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="app">
+      <h3>Product title</h3>
+      <p>Product testing description</p>
+      <span class="price">price: ${{price}}</span>
+      <span class="amount-title">Amount:</span>
+      <input type="range" min="1" max="20" step="1" v-model="amount" />
+      <div class="total-price">
+        <span class="amount">Amount: {{amount}}</span>
+        <span class="total">Total: {{total}}</span>
+      </div>
+    </form>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            amount: 1,
+            price: 10
+          };
+        },
+        computed: {
+          total() {
+            return this.amount * this.price
+          }
+        }
+      });
+      app.mount("#app")
+    </script>
+  </body>
+</html>
